@@ -128,7 +128,7 @@ contactForm.addEventListener("submit", function(e) {
     message: message
   };
 
-  emailjs.send("service_8d81vgv", "template_vm2uimr", templateParams)
+  emailjs.send("service_6qmoq1d", "template_vm2uimr", templateParams)
     .then(function() {
       const messages = JSON.parse(localStorage.getItem("messages")) || [];
       messages.push({
@@ -143,9 +143,8 @@ contactForm.addEventListener("submit", function(e) {
       contactForm.reset();
       showNotification("📧 Message envoyé avec succès!");
       console.log("Message envoyé:", templateParams);
-    }, function(error) {
-      console.error("Erreur EmailJS:", error);
-      alert("Erreur lors de l'envoi du message. Vérifie ta configuration EmailJS.");
+    }, function() {
+      alert("Erreur lors de l'envoi du message.");
     });
 });
 
