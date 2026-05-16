@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Mon Portfolio Étudiant</title>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <h2 class="logo">Portfolio Dev</h2>
+      <button id="darkModeBtn" class="dark-mode-btn">🌙 Mode Sombre</button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <h1>Bienvenue sur mon Portfolio</h1>
+      <p class="subtitle">Étudiant en Informatique - Développeur Web</p>
+      <p class="bio">Passionné par la programmation et les technologies web modernes</p>
+    </div>
+  </header>
+
+  <!-- Section Profil -->
+  <section class="profile-section">
+    <div class="container">
+      <h2>À Propos de Moi</h2>
+      <div class="profile-card">
+        <div class="profile-info">
+          <h3>Hamza D.</h3>
+          <p class="role">Développeur Web Junior | Étudiant ESISA</p>
+          <div class="skills">
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Projets -->
+  <section class="projects-section">
+    <div class="container">
+      <h2>Mes Projets</h2>
+      
+      <div class="project-form">
+        <h3>Ajouter un Nouveau Projet</h3>
+        <form id="projectForm">
+          <div class="form-group">
+            <input id="projectName" type="text" placeholder="Nom du projet" required>
+          </div>
+          <div class="form-group">
+            <input id="projectDesc" type="text" placeholder="Description" required>
+          </div>
+          <div class="form-group">
+            <input id="projectTech" type="text" placeholder="Technologies (ex: HTML, CSS, JS)" required>
+          </div>
+          <button type="submit" class="btn-add">➕ Ajouter Projet</button>
+        </form>
+      </div>
+
+      <div id="projectsList" class="projects-grid">
+        <!-- Projets dynamiques seront ajoutés ici -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Contact -->
+  <section class="contact-section">
+    <div class="container">
+      <h2>Me Contacter</h2>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <input id="contactName" type="text" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <input id="contactEmail" type="email" placeholder="Votre email" required>
+          </div>
+          <div class="form-group">
+            <textarea id="contactMsg" placeholder="Votre message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">📧 Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Portfolio Étudiant. Tous droits réservés.</p>
+    <p>Versionné avec <a href="https://github.com" target="_blank">GitHub</a></p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
