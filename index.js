@@ -1,15 +1,12 @@
-// === Mode Sombre ===
 const darkModeBtn = document.getElementById("darkModeBtn");
 const htmlElement = document.documentElement;
 
-// Charger le mode sombre depuis localStorage
 const isDarkMode = localStorage.getItem("darkMode") === "true";
 if (isDarkMode) {
   document.body.classList.add("dark-mode");
   darkModeBtn.textContent = "☀️ Mode Clair";
 }
 
-// Toggle mode sombre
 darkModeBtn.addEventListener("click", function() {
   document.body.classList.toggle("dark-mode");
   const isNowDarkMode = document.body.classList.contains("dark-mode");
@@ -17,14 +14,12 @@ darkModeBtn.addEventListener("click", function() {
   darkModeBtn.textContent = isNowDarkMode ? "☀️ Mode Clair" : "🌙 Mode Sombre";
 });
 
-// === Gestion des Projets ===
 const projectForm = document.getElementById("projectForm");
 const projectName = document.getElementById("projectName");
 const projectDesc = document.getElementById("projectDesc");
 const projectTech = document.getElementById("projectTech");
 const projectsList = document.getElementById("projectsList");
 
-// Charger les projets depuis localStorage
 let projects = JSON.parse(localStorage.getItem("projects")) || [
   {
     id: 1,
@@ -36,11 +31,10 @@ let projects = JSON.parse(localStorage.getItem("projects")) || [
     id: 2,
     name: "Portfolio Étudiant",
     description: "Page portfolio personnel avec mode sombre",
-    technologies: "HTML, CSS, JavaScript, Git"
+    technologies: "HTML, CSS, JavaScript"
   }
 ];
 
-// Afficher les projets
 function displayProjects() {
   projectsList.innerHTML = "";
 
@@ -64,7 +58,6 @@ function displayProjects() {
   });
 }
 
-// Ajouter un projet
 projectForm.addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -87,15 +80,12 @@ projectForm.addEventListener("submit", function(e) {
   projects.push(newProject);
   localStorage.setItem("projects", JSON.stringify(projects));
 
-  // Réinitialiser le formulaire
   projectForm.reset();
   displayProjects();
 
-  // Animation de feedback
   showNotification("✅ Projet ajouté avec succès!");
 });
 
-// Supprimer un projet
 function deleteProject(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer ce projet?")) {
     projects = projects.filter(p => p.id !== id);
@@ -105,7 +95,6 @@ function deleteProject(id) {
   }
 }
 
-// === Gestion du Formulaire Contact ===
 const contactForm = document.getElementById("contactForm");
 const contactName = document.getElementById("contactName");
 const contactEmail = document.getElementById("contactEmail");
@@ -123,14 +112,12 @@ contactForm.addEventListener("submit", function(e) {
     return;
   }
 
-  // Validation simple email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     alert("Veuillez entrer un email valide");
     return;
   }
 
-  // Sauvegarder le message dans localStorage
   let messages = JSON.parse(localStorage.getItem("messages")) || [];
   messages.push({
     id: Date.now(),
@@ -141,14 +128,12 @@ contactForm.addEventListener("submit", function(e) {
   });
   localStorage.setItem("messages", JSON.stringify(messages));
 
-  // Réinitialiser
   contactForm.reset();
   showNotification("📧 Message envoyé avec succès!");
 
   console.log("Messages reçus:", messages);
 });
 
-// === Notification ===
 function showNotification(message) {
   const notification = document.createElement("div");
   notification.style.cssText = `
@@ -172,7 +157,6 @@ function showNotification(message) {
   }, 3000);
 }
 
-// Ajouter une animation CSS pour les notifications
 const style = document.createElement("style");
 style.textContent = `
   @keyframes slideInRight {
@@ -199,10 +183,8 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// === Initialisation ===
 displayProjects();
 
-// === Afficher les messages dans la console ===
 console.log("🎓 Portfolio Étudiant chargé!");
 console.log("💾 Projets sauvegardés:", projects);
 console.log("📧 Messages de contact:", localStorage.getItem("messages"));
