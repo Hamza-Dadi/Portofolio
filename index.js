@@ -7,6 +7,10 @@ if (isDarkMode) {
   darkModeBtn.textContent = "☀️ Mode Clair";
 }
 
+if (window.emailjs) {
+  emailjs.init("Ty85Zw8NUdUgZG4GS");
+}
+
 darkModeBtn.addEventListener("click", function() {
   document.body.classList.toggle("dark-mode");
   const isNowDarkMode = document.body.classList.contains("dark-mode");
@@ -118,20 +122,31 @@ contactForm.addEventListener("submit", function(e) {
     return;
   }
 
-  let messages = JSON.parse(localStorage.getItem("messages")) || [];
-  messages.push({
-    id: Date.now(),
-    name: name,
-    email: email,
-    message: message,
-    date: new Date().toLocaleString("fr-FR")
-  });
-  localStorage.setItem("messages", JSON.stringify(messages));
+  const templateParams = {
+    from_name: name,
+    from_email: email,
+    message: message
+  };
 
-  contactForm.reset();
-  showNotification("📧 Message envoyé avec succès!");
+  emailjs.send("service_6qmoq1d", "template_vm2uimr", templateParams)
+    .then(function() {
+      const messages = JSON.parse(localStorage.getItem("messages")) || [];
+      messages.push({
+        id: Date.now(),
+        name: name,
+        email: email,
+        message: message,
+        date: new Date().toLocaleString("fr-FR")
+      });
+      localStorage.setItem("messages", JSON.stringify(messages));
 
-  console.log("Messages reçus:", messages);
+      contactForm.reset();
+      showNotification("📧 Message envoyé avec succès!");
+      console.log("Message envoyé:", templateParams);
+    }, function(error) {
+      console.error("Erreur EmailJS:", error);
+      alert("Erreur lors de l'envoi du message. Vérifie ta configuration EmailJS.");
+    });
 });
 
 function showNotification(message) {

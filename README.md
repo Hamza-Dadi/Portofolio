@@ -61,9 +61,15 @@ Portfolio Etudiant/
 ```javascript
 - Validation des champs
 - Validation email
+- Envoi réel par email via EmailJS
 - Sauvegarde des messages
 - Notification de succès
 ```
+
+## 🔧 Configuration EmailJS
+1. Crée un compte sur https://www.emailjs.com
+2. Ajoute un service email et un modèle (template)
+3. Remplace `YOUR_EMAILJS_PUBLIC_KEY`, `YOUR_SERVICE_ID` et `YOUR_TEMPLATE_ID` dans `index.js`
 
 ## 💾 Stockage des Données
 
@@ -87,25 +93,6 @@ Les données sont sauvegardées dans **localStorage**:
 4. **Envoyer un message**: Remplir le formulaire de contact
 5. **Supprimer un projet**: Cliquer sur le bouton 🗑️
 
-## 🌐 Déploiement sur GitHub
-
-```bash
-# Initialiser le repository
-git init
-
-# Ajouter les fichiers
-git add .
-
-# Commit initial
-git commit -m "Initial commit: Portfolio Étudiant"
-
-# Ajouter le remote (remplacer par votre URL)
-git remote add origin https://github.com/votre-username/portfolio-etudiant.git
-
-# Push
-git push -u origin main
-```
-
 ## 🎨 Palette de Couleurs
 
 | Couleur | Hex | Usage |
@@ -127,13 +114,12 @@ git push -u origin main
 - Backend pour persister les données
 - Authentification utilisateur
 - Upload de photos
-- Intégration GitHub API
 - Animations avancées
 - Multilangue
 
 ## 👨‍💻 Auteur
 
-Hamza D. - Étudiant ESISA en Informatique
+Hamza Dadi - Étudiant ESISA en Informatique
 
 ## 📄 License
 
