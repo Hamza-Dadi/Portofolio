@@ -128,7 +128,7 @@ contactForm.addEventListener("submit", function(e) {
     message: message
   };
 
-  emailjs.send("service_6qmoq1d", "template_vm2uimr", templateParams)
+  emailjs.send("service_w0b6cvb", "template_vm2uimr", templateParams)
     .then(function() {
       const messages = JSON.parse(localStorage.getItem("messages")) || [];
       messages.push({

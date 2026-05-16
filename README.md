@@ -11,7 +11,6 @@ Un portfolio web moderne et interactif pour étudiant développeur, créé avec 
 ✅ **Boutons cliquables** - Interactions fluides et réactives
 ✅ **Mode sombre** - Toggle entre thème clair et sombre (localStorage)
 ✅ **Liste dynamique** - Ajouter/supprimer des projets en temps réel
-✅ **Versionné avec Git** - Projet prêt pour GitHub
 
 ## 🎨 Sections du Portfolio
 
@@ -20,7 +19,6 @@ Un portfolio web moderne et interactif pour étudiant développeur, créé avec 
 3. **Profil** - Information sur l'étudiant + compétences
 4. **Projets** - Formulaire pour ajouter des projets + liste dynamique
 5. **Contact** - Formulaire de contact avec validation
-6. **Footer** - Crédits et lien GitHub
 
 ## 🛠️ Technologies Utilisées
 
@@ -28,7 +26,6 @@ Un portfolio web moderne et interactif pour étudiant développeur, créé avec 
 - **CSS3** - Design moderne (Flexbox, Grid, Gradients, Animations)
 - **JavaScript (Vanilla)** - Interactions et gestion du DOM
 - **localStorage** - Persistance des données
-- **Git** - Contrôle de version
 
 ## 📁 Structure du Projet
 
@@ -65,11 +62,6 @@ Portfolio Etudiant/
 - Sauvegarde des messages
 - Notification de succès
 ```
-
-## 🔧 Configuration EmailJS
-1. Crée un compte sur https://www.emailjs.com
-2. Ajoute un service email et un modèle (template)
-3. Remplace `YOUR_EMAILJS_PUBLIC_KEY`, `YOUR_SERVICE_ID` et `YOUR_TEMPLATE_ID` dans `index.js`
 
 ## 💾 Stockage des Données
 
