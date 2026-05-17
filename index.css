@@ -1,6 +1,13 @@
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
+  background-color: #1b1d4d;
 }
+
+body {
+  overscroll-behavior: none;
+}
+
 
 * {
   box-sizing: border-box;

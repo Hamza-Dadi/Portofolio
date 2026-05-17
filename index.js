@@ -101,7 +101,6 @@ if (mainTitle) { const t = mainTitle.textContent; mainTitle.textContent = ""; an
 if (subtitle)  { animateText(subtitle, subtitle.textContent, 32); }
 if (bio)       { const t = bio.textContent; bio.textContent = ""; setTimeout(() => animateText(bio, t, 28), 700); }
 
-observeRevealItems();
 
 // === EmailJS ===
 if (window.emailjs) emailjs.init("Ty85Zw8NUdUgZG4GS");
