@@ -1,10 +1,72 @@
 const darkModeBtn = document.getElementById("darkModeBtn");
 const htmlElement = document.documentElement;
 
+// === Navigation Active Link ===
+const navLinks = document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll("section[id]");
+
+function updateActiveLink() {
+  let currentSection = "";
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (window.pageYOffset >= sectionTop - 200) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("data-section") === currentSection) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", updateActiveLink);
+
+// === Smooth Click Navigation ===
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const sectionId = link.getAttribute("href");
+    const section = document.querySelector(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
 const isDarkMode = localStorage.getItem("darkMode") === "true";
 if (isDarkMode) {
   document.body.classList.add("dark-mode");
   darkModeBtn.textContent = "☀️ Mode Clair";
+}
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("reveal-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" });
+
+function animateText(element, text, speed = 40) {
+  element.textContent = "";
+  let index = 0;
+  const interval = setInterval(() => {
+    element.textContent += text[index];
+    index += 1;
+    if (index >= text.length) {
+      clearInterval(interval);
+    }
+  }, speed);
+}
+
+function observeRevealItems() {
+  document.querySelectorAll(".reveal-item").forEach(item => revealObserver.observe(item));
 }
 
 if (window.emailjs) {
@@ -14,7 +76,7 @@ if (window.emailjs) {
 darkModeBtn.addEventListener("click", function() {
   document.body.classList.toggle("dark-mode");
   const isNowDarkMode = document.body.classList.contains("dark-mode");
-  localStorage.setItem("darkMode", isNowDarkMode);
+  localStorage.setItem("darkMode", isNowDarkMode ? "true" : "false");
   darkModeBtn.textContent = isNowDarkMode ? "☀️ Mode Clair" : "🌙 Mode Sombre";
 });
 
@@ -47,9 +109,10 @@ function displayProjects() {
     return;
   }
 
-  projects.forEach(project => {
+  projects.forEach((project, index) => {
     const projectCard = document.createElement("div");
-    projectCard.classList.add("project-card");
+    projectCard.classList.add("project-card", "reveal-item");
+    projectCard.style.setProperty("--delay", `${index * 70}ms`);
     projectCard.innerHTML = `
       <h3>${project.name}</h3>
       <p>${project.description}</p>
@@ -59,6 +122,7 @@ function displayProjects() {
       <button class="btn-delete" onclick="deleteProject(${project.id})">🗑️ Supprimer</button>
     `;
     projectsList.appendChild(projectCard);
+    revealObserver.observe(projectCard);
   });
 }
 
@@ -197,7 +261,45 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+[...document.querySelectorAll("section, .header-content, .profile-card, .project-form, .contact-form")].forEach(item => item.classList.add("reveal-item"));
+
+const mainTitle = document.querySelector(".header-content h1");
+const subtitleElement = document.querySelector(".header-content .subtitle");
+const bioElement = document.querySelector(".header-content .bio");
+if (mainTitle) {
+  const titleText = mainTitle.textContent;
+  mainTitle.textContent = "";
+  animateText(mainTitle, titleText, 48);
+}
+if (subtitleElement) {
+  animateText(subtitleElement, subtitleElement.textContent, 32);
+}
+if (bioElement) {
+  const bioText = bioElement.textContent;
+  bioElement.textContent = "";
+  setTimeout(() => animateText(bioElement, bioText, 28), 700);
+}
+
 displayProjects();
+observeRevealItems();
+
+// === Scroll to Top Button ===
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 300) {
+    scrollTopBtn.style.display = "inline-block";
+  } else {
+    scrollTopBtn.style.display = "none";
+  }
+});
+
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
 console.log("🎓 Portfolio Étudiant chargé!");
 console.log("💾 Projets sauvegardés:", projects);
