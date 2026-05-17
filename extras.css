@@ -1,4 +1,15 @@
-/* === SPLASH SCREEN === */
+/* === SECTION SEPARATORS (CSS-only, no SVG) === */
+.projects-section {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, transparent, var(--primary), transparent) 1;
+}
+
+.contact-section {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, transparent, var(--secondary), transparent) 1;
+}
+
+
 #splashScreen {
   position: fixed;
   inset: 0;
@@ -125,26 +136,7 @@ body.dark-mode .projects-section {
   background: linear-gradient(180deg, rgba(123,108,255,0.10) 0%, #1a1d2e 60%) !important;
 }
 
-/* === ENHANCED TRANSITIONS === */
-.reveal-item {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* Staggered project cards */
-.projects-grid .project-card:nth-child(1).reveal-item { transition-delay: 0ms; }
-.projects-grid .project-card:nth-child(2).reveal-item { transition-delay: 130ms; }
-.projects-grid .project-card:nth-child(3).reveal-item { transition-delay: 260ms; }
-
-/* Staggered skill tags */
-.skills .skill-tag:nth-child(1) { transition-delay: 60ms;  }
-.skills .skill-tag:nth-child(2) { transition-delay: 120ms; }
-.skills .skill-tag:nth-child(3) { transition-delay: 180ms; }
-.skills .skill-tag:nth-child(4) { transition-delay: 240ms; }
-.skills .skill-tag:nth-child(5) { transition-delay: 300ms; }
+/* === STAGGERED CARD ANIMATION (utilise fadeIn existant de index.css) === */
+.projects-grid .project-card:nth-child(1) { animation-delay: 0ms;   }
+.projects-grid .project-card:nth-child(2) { animation-delay: 150ms; }
+.projects-grid .project-card:nth-child(3) { animation-delay: 300ms; }

@@ -79,21 +79,9 @@ darkModeBtn.addEventListener("click", function () {
   darkModeBtn.textContent = dark ? "☀️ Mode Clair" : "🌙 Mode Sombre";
 });
 
-// === Reveal on Scroll ===
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("reveal-visible");
-    } else {
-      // Reset quand l'élément quitte l'écran → se réanime au prochain scroll
-      entry.target.classList.remove("reveal-visible");
-    }
-  });
-}, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
 
-function observeRevealItems() {
-  document.querySelectorAll(".reveal-item").forEach(item => revealObserver.observe(item));
-}
+// Pas d'observer nécessaire — les cartes ont déjà fadeIn via CSS
+
 
 // === Typing Animation ===
 function animateText(element, text, speed = 40) {
