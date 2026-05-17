@@ -1,0 +1,150 @@
+/* === SPLASH SCREEN === */
+#splashScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1b1d4d 0%, #2d2a8c 50%, #3d3ad8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#splashScreen.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.splash-content {
+  text-align: center;
+  color: white;
+  animation: splashIn 0.6s ease both;
+}
+.splash-logo {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  animation: splashPulse 1.2s ease-in-out infinite alternate;
+}
+.splash-name {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+.splash-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.splash-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #fff, #7b6cff);
+  border-radius: 2px;
+  animation: splashLoad 2s ease forwards;
+}
+@keyframes splashIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes splashPulse {
+  from { opacity: 0.8; }
+  to   { opacity: 1; }
+}
+@keyframes splashLoad {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* === HEADER WAVE === */
+.header {
+  overflow: visible !important;
+  position: relative;
+  padding-bottom: 70px;
+}
+.header-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+}
+.header-wave svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+.wave-path-1 {
+  fill: #f5f7fa;
+  animation: waveFloat 7s ease-in-out infinite;
+}
+.wave-path-2 {
+  fill: #f5f7fa;
+  animation: waveFloat 9s ease-in-out infinite reverse;
+}
+body.dark-mode .wave-path-1,
+body.dark-mode .wave-path-2 {
+  fill: #0a0d1a;
+}
+@keyframes waveFloat {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(-20px); }
+}
+
+/* === SECTION DIVIDERS === */
+.section-divider {
+  line-height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+.divider-path     { fill: rgba(123, 108, 255, 0.07); }
+.divider-path-alt { fill: rgba(123, 108, 255, 0.05); }
+body.dark-mode .divider-path     { fill: rgba(123, 108, 255, 0.14); }
+body.dark-mode .divider-path-alt { fill: rgba(123, 108, 255, 0.10); }
+
+/* === ALTERNATING SECTION BACKGROUNDS === */
+.projects-section {
+  background: linear-gradient(180deg, rgba(123,108,255,0.05) 0%, white 60%) !important;
+}
+body.dark-mode .projects-section {
+  background: linear-gradient(180deg, rgba(123,108,255,0.10) 0%, #1a1d2e 60%) !important;
+}
+
+/* === ENHANCED TRANSITIONS === */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Staggered project cards */
+.projects-grid .project-card:nth-child(1).reveal-item { transition-delay: 0ms; }
+.projects-grid .project-card:nth-child(2).reveal-item { transition-delay: 130ms; }
+.projects-grid .project-card:nth-child(3).reveal-item { transition-delay: 260ms; }
+
+/* Staggered skill tags */
+.skills .skill-tag:nth-child(1) { transition-delay: 60ms;  }
+.skills .skill-tag:nth-child(2) { transition-delay: 120ms; }
+.skills .skill-tag:nth-child(3) { transition-delay: 180ms; }
+.skills .skill-tag:nth-child(4) { transition-delay: 240ms; }
+.skills .skill-tag:nth-child(5) { transition-delay: 300ms; }
