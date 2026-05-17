@@ -47,30 +47,49 @@
     </div>
   </section>
 
+  <!-- Section Projets -->
   <section class="projects-section reveal-item" id="projets">
     <div class="container">
       <h2>Mes Projets</h2>
-      
-      <div class="project-form reveal-item">
-        <h3>Ajouter un Nouveau Projet</h3>
-        <form id="projectForm">
-          <div class="form-group">
-            <input id="projectName" type="text" placeholder="Nom du projet" required>
-          </div>
-          <div class="form-group">
-            <input id="projectDesc" type="text" placeholder="Description" required>
-          </div>
-          <div class="form-group">
-            <input id="projectTech" type="text" placeholder="Technologies (ex: HTML, CSS, JS)" required>
-          </div>
-          <button type="submit" class="btn-add">➕ Ajouter Projet</button>
-        </form>
-      </div>
 
-      <div id="projectsList" class="projects-grid"></div>
+      <div class="projects-grid">
+
+        <div class="project-card reveal-item">
+          <h3>Sign Up Form</h3>
+          <p>Formulaire d'inscription avec validation complète des champs côté client.</p>
+          <div class="project-tech">
+            <span class="tech-label">HTML</span>
+            <span class="tech-label">CSS</span>
+            <span class="tech-label">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal-item">
+          <h3>Portfolio Étudiant</h3>
+          <p>Page portfolio personnel avec mode sombre, animations et formulaire de contact.</p>
+          <div class="project-tech">
+            <span class="tech-label">HTML</span>
+            <span class="tech-label">CSS</span>
+            <span class="tech-label">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal-item">
+          <h3>SpendWise</h3>
+          <p>Application de gestion de budget personnel avec suivi des dépenses et revenus.</p>
+          <div class="project-tech">
+            <span class="tech-label">HTML</span>
+            <span class="tech-label">CSS</span>
+            <span class="tech-label">JavaScript</span>
+            <span class="tech-label">SQL</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
+  <!-- Section Contact -->
   <section class="contact-section reveal-item" id="contact">
     <div class="container">
       <h2>Me Contacter</h2>
@@ -109,6 +128,7 @@
         <ul class="footer-links">
           <li><a href="#">Sign Up Form</a></li>
           <li><a href="#">Portfolio Étudiant</a></li>
+          <li><a href="#">SpendWise</a></li>
         </ul>
       </div>
 
@@ -123,7 +143,7 @@
           experiences with passion.
         </p>
         <p class="footer-text">
-          📍 Fez,Morocco<br>
+          📍 Fez, Morocco<br>
           📱 +212 6 97 69 03 63
         </p>
       </div>
@@ -147,7 +167,6 @@
     </div>
   </footer>
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="index.js"></script>
 </body>

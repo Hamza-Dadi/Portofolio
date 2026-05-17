@@ -1,5 +1,69 @@
 const darkModeBtn = document.getElementById("darkModeBtn");
 const htmlElement = document.documentElement;
+const manageBtn = document.getElementById("manageBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const adminModal = document.getElementById("adminModal");
+const adminPanel = document.getElementById("adminPanel");
+const adminPassword = document.getElementById("adminPassword");
+const adminLoginBtn = document.getElementById("adminLoginBtn");
+const adminCancelBtn = document.getElementById("adminCancelBtn");
+const adminError = document.getElementById("adminError");
+
+// === Admin Password (change this!) ===
+const ADMIN_PASSWORD = "hamza2026";
+
+let isAdmin = sessionStorage.getItem("isAdmin") === "true";
+
+function setAdminMode(active) {
+  isAdmin = active;
+  sessionStorage.setItem("isAdmin", active ? "true" : "false");
+  adminPanel.style.display = active ? "block" : "none";
+  manageBtn.style.display = active ? "none" : "inline-flex";
+  logoutBtn.style.display = active ? "inline-flex" : "none";
+  displayProjects();
+}
+
+// Restore admin state on reload
+if (isAdmin) {
+  adminPanel.style.display = "block";
+  manageBtn.style.display = "none";
+  logoutBtn.style.display = "inline-flex";
+}
+
+manageBtn.addEventListener("click", () => {
+  adminModal.style.display = "flex";
+  adminPassword.value = "";
+  adminError.style.display = "none";
+  setTimeout(() => adminPassword.focus(), 100);
+});
+
+adminCancelBtn.addEventListener("click", () => {
+  adminModal.style.display = "none";
+});
+
+adminModal.addEventListener("click", (e) => {
+  if (e.target === adminModal) adminModal.style.display = "none";
+});
+
+adminLoginBtn.addEventListener("click", () => {
+  if (adminPassword.value === ADMIN_PASSWORD) {
+    adminModal.style.display = "none";
+    setAdminMode(true);
+  } else {
+    adminError.style.display = "block";
+    adminPassword.value = "";
+    adminPassword.focus();
+  }
+});
+
+adminPassword.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") adminLoginBtn.click();
+});
+
+logoutBtn.addEventListener("click", () => {
+  setAdminMode(false);
+});
+
 
 // === Navigation Active Link ===
 const navLinks = document.querySelectorAll(".nav-link");
@@ -119,7 +183,7 @@ function displayProjects() {
       <div class="project-tech">
         ${project.technologies.split(",").map(tech => `<span class="tech-label">${tech.trim()}</span>`).join("")}
       </div>
-      <button class="btn-delete" onclick="deleteProject(${project.id})">🗑️ Supprimer</button>
+      ${isAdmin ? `<button class="btn-delete" onclick="deleteProject(${project.id})">🗑️ Supprimer</button>` : ""}
     `;
     projectsList.appendChild(projectCard);
     revealObserver.observe(projectCard);
